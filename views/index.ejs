@@ -1,11 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= texto %></p>
-  </body>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Welcome to <%= texto[1] %>
+  </p>
+
+  <div id="text"></div>
+  <%= var n_node = 1 %>
+  <script>
+    
+    var text_eng = "<%= texto[n_node] %>";
+    var arr_text_eng = text_eng.split("");
+
+    var text = document.getElementById("text");
+    var split_text = "";
+
+    var n = 0;
+    arr_text_eng.forEach(element => {
+      split_text = split_text + "<span id='" + n + "'>" + element + "</span>";
+      n = n + 1;
+    });
+    text.innerHTML = split_text;
+
+    n = 0;
+    arr_text_eng.forEach(element => {
+      arr_text_eng[n] = element.charCodeAt(0);
+      n = n + 1;
+    })
+    console.log(arr_text_eng);
+
+    n = 0;
+    $(document).keypress(function (e) {
+      if (e.which == arr_text_eng[n]) {
+        $("#" + n + "").css({ 'color': 'green' });
+        n = n + 1;
+        console.log(n);
+      } else {
+        $("#" + n + "").css({ 'color': 'red' });
+        n = n + 1;
+        console.log(n);
+      }
+    });
+
+  </script>
+
+</body>
+
 </html>

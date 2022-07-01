@@ -13,11 +13,9 @@ router.get('/', function (req, res, next) {
 
     var archivo_srt_1 = fs.readFileSync('./Audio&Text/Rick&Morty/text.txt', 'UTF-8');
 
-    srt1_arr = archivo_srt_1.split(/\n\s*\n/);
-    var myJsonString = JSON.stringify(srt1_arr);
-    console.log(myJsonString);
-
-    res.render('index', { title: 'Express' , texto:myJsonString });
+    var srt1_arr = archivo_srt_1.split(/\r?\n/);
+    console.log(srt1_arr[2]);
+    res.render('index', { title: 'Express' , texto:srt1_arr });
 
   });
 
